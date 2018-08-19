@@ -58,7 +58,7 @@ public class WordMatcher {
          substring = word.substring(wordIndex, wordIndex + SUBSTRING_SIZE);
       }
       
-      if (usedStrings.contains(substring)) {
+      while(usedStrings.contains(substring)) {
          generate();
       }
       
