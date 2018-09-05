@@ -33,7 +33,7 @@ public class WordMatcherMain {
            long elapsed = System.currentTimeMillis() - startTime;
            System.out.println("You've taken " + elapsed / 1000 + "." + elapsed % 10 + "s so far");
         }
-        System.out.print("Do you want to play again?(y/n): ");
+        System.out.print("Do you want to play again?c(y/n): ");
         userResponse = console.next();
      }        
    }

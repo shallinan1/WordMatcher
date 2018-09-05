@@ -24,6 +24,9 @@ public class WordMatcher {
    // Set of all strings previously generated.
    private Set<String> usedStrings;
    
+   // Set of all words used
+   private Set<String> usedWords;
+   
    // List to hold all words in the dictionary.
    private List<String> dictionary;
    
@@ -34,6 +37,7 @@ public class WordMatcher {
       // timer = new Timer();
       randomGenerator = new Random();
       usedStrings = new HashSet<String>();
+      usedWords = new HashSet<String>();
    }
    
    // Pre:  All words in the dictionary are the size of 
@@ -70,10 +74,21 @@ public class WordMatcher {
    public boolean guess(Scanner input) {
       System.out.print("Enter a word that includes \"" + substring + "\": ");
       String userGuess = input.next();
-      if (userGuess.contains(substring) && dictionary.contains(userGuess)) {
+      
+      if (usedWords.contains(userGuess)) {
+         System.out.println("You've used that word already!");
+         return true;
+      }
+      
+      else if (userGuess.contains(substring) && dictionary.contains(userGuess)) {
+         usedWords.add(userGuess);
          return false;
       }
-      return true;
+      
+      else {
+         System.out.println("Not a valid word!"); 
+         return true;
+      }
    }   
    
 }
