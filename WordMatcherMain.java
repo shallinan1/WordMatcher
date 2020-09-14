@@ -4,11 +4,14 @@ import java.util.*;
 import java.io.*;
 
 // Plays a game of Word Matcher.
-public class WordMatcherMain {
+public class WordMatcherMain{
+   private static double MAX_TIME = 10*1000;
+   
+   Timer timer = new Timer();
    
    public static void main(String[] args) throws FileNotFoundException {
      System.out.println("Welcome to the Word Matcher game");
-     System.out.println("Type \"STOP\" at any point to end the game.");
+     System.out.println("This game will end when you cannot guess a word in time!");
      
      Scanner console = new Scanner(System.in);
      System.out.print("What is the name of the dictionary file? ");
@@ -22,19 +25,17 @@ public class WordMatcherMain {
      
      WordMatcher game = new WordMatcher(dictionary);
      
-     String userResponse = "y";
+     boolean success = true;
      
-     while (userResponse.equals("y")) {
+     while (success) {
         long startTime = System.currentTimeMillis();
         game.generate();
         boolean notAnswered = true;
         while (notAnswered) {
            notAnswered = game.guess(console);
-           long elapsed = System.currentTimeMillis() - startTime;
-           System.out.println("You've taken " + elapsed / 1000 + "." + elapsed % 10 + "s so far");
         }
-        System.out.print("Do you want to play again?c(y/n): ");
-        userResponse = console.next();
+        long elapsed = System.currentTimeMillis() - startTime;
+        System.out.println("You took " + elapsed + " seconds!");
      }        
    }
 }

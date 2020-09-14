@@ -50,7 +50,7 @@ public class WordMatcher {
       System.out.println(word);
       
       if (word.length() < SUBSTRING_SIZE) {
-         throw new IllegalArgumentException("Word too short!");
+         generate();
       }
          
       else if (word.length() == SUBSTRING_SIZE) {
@@ -71,9 +71,10 @@ public class WordMatcher {
    
    // Post: Returns false if the user sucessfully inputs a word containing
    //       the generated substring, and returns true if they have not.
+   //       Input word can be any combination of upper/lower case
    public boolean guess(Scanner input) {
       System.out.print("Enter a word that includes \"" + substring + "\": ");
-      String userGuess = input.next();
+      String userGuess = input.next().toLowerCase();
       
       if (usedWords.contains(userGuess)) {
          System.out.println("You've used that word already!");
@@ -86,7 +87,7 @@ public class WordMatcher {
       }
       
       else {
-         System.out.println("Not a valid word!"); 
+         System.out.println("Not a valid word! Try again!"); 
          return true;
       }
    }   
